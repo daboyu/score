@@ -126,10 +126,9 @@
 			<div class="ts negative segment" style="height:100%">
 				<h2 class="ts dividing header">計算結果</h2>
 				<p id="result">來算算看吧！</p> <!-- 顯示回傳資料 -->
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- 引入 jQuery -->
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- 引入 jQuery -->
 				<script type="text/javascript">
-					$(document).ready(function() {
-						$("#submitExample").click(function() { //ID 為 submitExample 的按鈕被點擊時
+					function sent() {
 							$.ajax({
 								type: "POST", //傳送方式
 								url: "api.php?asd="+Math.random(), //傳送目的地
@@ -179,8 +178,7 @@
 									$("#result").html('<font color="#ff0000">發生錯誤：' + jqXHR.status + '</font>');
 								}
 							})
-						})
-					});
+					};
 				</script>                    
 			</div>
 		</div>
