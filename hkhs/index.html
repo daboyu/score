@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="你可以在這裡算算看你三段要考多少，或算看看你需不需要補修，需不需要補考（我就懶）。">
-    <title>三段、學期成績試算神器</title>
+    <title>三段、學期成績試算神器(For HKHS)</title>
     <!-- Facebook Opengraph -->
     <meta property="og:url" content="http://score.dabo.xyz/" />
     <meta property="og:locale" content="zh_TW" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="三段、學期成績計算神器" />
+    <meta property="og:title" content="三段、學期成績計算神器(For HKHS)" />
     <meta property="og:description" content="你可以在這裡算算看你三段要考多少，或算看看你需不需要補修，需不需要補考（我就懶）。"/>
     <meta property="og:image" content="http://score.dabo.xyz/img/banner.jpg" />
     <meta property="og:image:alt" content="三段、學期成績計算神器e" />
@@ -47,7 +47,7 @@
             <img src="/img/banner.jpg">
         </div>
         <div class="ts narrow container">
-            <h1 style="white-space:nowrap" class="ts header">成績試算神器</h1>
+            <h1 style="white-space:nowrap" class="ts header">成績試算神器<br class="mobile only">(For HKHS)</h1>
             <div class="tablet or large device only ts medium header">
                 你可以在這裡算算看你三段要考多少，<br>
                 或算看看你需不需要補修，需不需要補考（我就懶）。
@@ -62,6 +62,7 @@
             <div class="ts secondary negative message">
                 <div class="header">使用說明：</div>
                 <p>請輸入本學期一段、二段成績及平時成績。若未填寫三段成績，系統將幫您算出三段要考多少分才會通過。<br>若填寫三段成績，系統將會計算本學期是否需要補考。<br><strong>免責聲明：本系統僅提供成績試算，因各校成績計算方式有些微差異，最終成績以學校公告為主。</strong>
+                <br><span style="color:#888">(本校權重：一段20%、二段20%、三段20%、平時40%)</span></p>
             </div>
             <br>
         </div>
@@ -91,14 +92,14 @@
                             <label>三段成績</label>
                             <input type="number" min="0" max="100" id="sc3" placeholder="三段成績">
                             <p class="tablet or large device only">&nbsp&nbsp&nbsp </p>
-                            <kbd class="tablet or large device only"><p>系統預設占比為30%</p></kbd>
+                            <kbd class="tablet or large device only"><p>系統預設占比為20%</p></kbd>
                             <p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
                         </div>
                         <div class="required field">
                             <label>平時成績</label>
                             <input type="number" min="0" max="100" id="tc1" placeholder="平時成績(必填)">
                             <p class="tablet or large device only">&nbsp&nbsp&nbsp </p>
-                            <kbd class="tablet or large device only"><p>系統預設占比為30%</p></kbd>
+                            <kbd class="tablet or large device only"><p>系統預設占比為40%</p></kbd>
                             <p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
                         </div>
                         <br>
@@ -121,13 +122,12 @@
     <br><br>
     <footer>
         <center>
-            <p>本系統由 <a target="_blank" href="https://me.imych.one/">黃猷珵</a> 及 <a target="_blank" href="https://dabo.xyz/">黃柏諭</a> 開發設計<br>
+            <p>本系統由 <a target="_blank" href="https://dabo.xyz/">黃柏諭</a> 及 <a target="_blank" href="https://me.imych.one/">黃猷珵</a> 開發設計<br>
             </p>
         </center>
     </footer>
     <script>
     document.getElementById('submitExample').addEventListener('click', function() {
-        // 取得輸入值
         var sc1 = document.getElementById('sc1').value;
         var sc2 = document.getElementById('sc2').value;
         var sc3 = document.getElementById('sc3').value;
@@ -136,16 +136,16 @@
 
         // 檢查必填
         if (sc1 === '' || sc2 === '' || tc1 === '') {
-            result.innerHTML = '<font color=\"#ff0000\">一二段、平時成績有漏輸入，請檢查後再試</font>';
+            result.innerHTML = '<font color="#ff0000">一二段、平時成績有漏輸入，請檢查後再試</font>';
             return;
         }
         // 檢查分數範圍
         if (sc1 < 0 || sc1 > 100 || sc2 < 0 || sc2 > 100 || tc1 < 0 || tc1 > 100) {
-            result.innerHTML = '<font color=\"#ff0000\">輸入的分數超過臺灣滿分標準，請檢查後再試</font>';
+            result.innerHTML = '<font color="#ff0000">輸入的分數超過臺灣滿分標準，請檢查後再試</font>';
             return;
         }
         if (sc3 !== '' && (sc3 < 0 || sc3 > 100)) {
-            result.innerHTML = '<font color=\"#ff0000\">三段成績超過範圍，請檢查後再試</font>';
+            result.innerHTML = '<font color="#ff0000">三段成績超過範圍，請檢查後再試</font>';
             return;
         }
 
@@ -155,28 +155,28 @@
         tc1 = Number(tc1);
         sc3 = sc3 === '' ? null : Number(sc3);
 
-        var scorce = sc1 * 0.2 + sc2 * 0.2 + tc1 * 0.3;
-
+        // 計算邏輯（20%、20%、20%、40%）
+        var scorce = sc1 * 0.2 + sc2 * 0.2 + tc1 * 0.4;
         if (sc3 === null) {
             // 沒填三段，算三段要考多少
-            var sc3out = Math.round((60 - scorce) / 0.3 - 1, 2);
-            var sc3out2 = Math.round((40 - scorce) / 0.3 - 1);
+            var sc3out = Math.round(((60 - scorce) / 0.2 - 1) * 100) / 100;
+            var sc3out2 = Math.round(((40 - scorce) / 0.2 - 1));
             var sc3out3 = Math.round(scorce * 100) / 100;
-            result.innerHTML = '<font color=\"#007500\">你目前學期成績是「<font color=\"#0000ff\">' + sc3out3 + '</font>」分</font><br><sk id=\"rs2\"></sk><br><sk id=\"rs3\"></sk>';
+            result.innerHTML = '<font color="#007500">你目前學期成績是「<font color="#0000ff">' + sc3out3 + '</font>」分</font><br><sk id="rs2"></sk><br><sk id="rs3"></sk>';
             if (sc3out3 < 60) {
-                document.getElementById('rs2').innerHTML = '<font color=\"#007500\">你三段至少要考「<font color=\"#0000ff\">' + sc3out + '</font>」這一科才會趴斯</font>';
+                document.getElementById('rs2').innerHTML = '<font color="#e31212">你三段至少要考「<font color="#0000ff">' + sc3out + '</font>」這一科才會趴斯</font>';
             } else {
-                document.getElementById('rs2').innerHTML = '<font color=\"#007500\">基本上你三段不管怎麼考都不會有被當的問題安啦</font>';
+                document.getElementById('rs2').innerHTML = '<font color="#007500">基本上你三段不管怎麼考都不會有被當的問題安啦</font>';
             }
             if (sc3out2 >= 0) {
-                document.getElementById('rs3').innerHTML = '<font color=\"#ff0000\">你三段至少要考「<font color=\"#0000ff\">' + sc3out2 + '</font>」才能有補考資格</font>';
+                document.getElementById('rs3').innerHTML = '<font color="#e31212">你三段至少要考「<font color="#0000ff">' + sc3out2 + '</font>」才能有補考資格</font>';
             }
         } else {
             // 有填三段，算學期成績
-            var scorce_semester = Math.round(scorce + sc3 * 0.3);
-            result.innerHTML = '<font color=\"#000\">你這學期成績「<font color=\"#0000ff\">' + (scorce_semester >= 60 ? '有過' : '沒過') + '</font>」！<br>而且你的學期成績為「<font color=\"#0000ff\">' + scorce_semester + '</font>」(四捨五入)，<sk id=\"result2\"></sk>';
+            var scorce_semester = Math.round(scorce + sc3 * 0.2);
+            result.innerHTML = '<font color="#000">你這學期成績「<font color="#0000ff">' + (scorce_semester >= 60 ? '有過' : '沒過') + '</font>」！<br>而且你的學期成績為「<font color="#0000ff">' + scorce_semester + '</font>」(四捨五入)，<sk id="result2"></sk>';
             if (scorce_semester >= 60) {
-                document.getElementById('result2').innerHTML = '<font color=\"#007500\">恭喜🎉🎉</font>';
+                document.getElementById('result2').innerHTML = '<font color="#007500">恭喜🎉🎉</font>';
             } else {
                 document.getElementById('result2').innerHTML = '<font color=\"#ff0000\">幫你QQ<br><sk id=\"result3\"></sk></font>';
                 if (scorce_semester >= 40) {
@@ -189,4 +189,4 @@
     });
     </script>
 </body>
-</html>
+</html> 

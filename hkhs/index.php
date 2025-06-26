@@ -21,12 +21,12 @@
 		  <meta charset="utf-8">
 		  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		  <meta name="description" content="你可以在這裡算算看你三段要考多少，或算看看你需不需要補修，需不需要補考（我就懶）。">
-		  <title>三段、學期成績試算神器</title>
+		  <title>三段、學期成績試算神器(For HKHS)</title>
 		  <!-- Facebook Opengraph -->
 		<meta property="og:url" content="http://score.dabo.xyz/" />
 		<meta property="og:locale" content="zh_TW" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="三段、學期成績計算神器" />
+		<meta property="og:title" content="三段、學期成績計算神器(For HKSH)" />
 		<meta property="og:description" content="你可以在這裡算算看你三段要考多少，或算看看你需不需要補修，需不需要補考（我就懶）。"/>
 		<meta property="og:image" content="http://score.dabo.xyz/img/banner.jpg" />
 		<meta property="og:image:alt" content="三段、學期成績計算神器e" />
@@ -68,10 +68,10 @@
 		<!-- End Google Tag Manager (noscript) -->
 			<header class="ts fluid center aligned padded heading slate" style="padding:150px;">
 				<div class="image">
-					<img src="/img/banner.jpg">
+					<img src="http://score.dabo.xyz/img/banner.jpg">
 				</div>
 				<div class="ts narrow container">
-					<h1 style="white-space:nowrap" class="ts header">成績試算神器</h1>
+					<h1 style="white-space:nowrap" class="ts header">成績試算神器<br class="mobile only">(For HKHS)</h1>
 					<div class="tablet or large device only ts medium header">
 						你可以在這裡算算看你三段要考多少，<br>
 						或算看看你需不需要補修，需不需要補考（我就懶）。
@@ -98,20 +98,24 @@
 			<div class="ts primary segment">
 				<div class="ts horizontal form">
 					<div class="required field">
-						<label>一段成績</label>
+						<label class="tablet or large device only">一段成績</label>
+						<label class="mobile only">一段成績，系統預設占比20%</label>
 						<input type="number" min="0" max="100" id="sc1" placeholder="一段成績(必填)"><p class="tablet or large device only">&nbsp&nbsp&nbsp </p><kbd class="tablet or large device only"><p>系統預設占比為20%</p></kbd><p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
 					</div>
 					<div class="required field">
-						<label>二段成績</label>
+						<label class="tablet or large device only">二段成績</label>
+						<label class="mobile only">二段成績，系統預設占比20%</label>
 						<input type="number" min="0" max="100" id="sc2" placeholder="二段成績(必填)"><p class="tablet or large device only">&nbsp&nbsp&nbsp </p><kbd class="tablet or large device only"><p>系統預設占比為20%</p></kbd><p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
 					</div>
 					<div class="field">
-						<label>三段成績</label>
-						<input type="number" min="0" max="100" id="sc3" placeholder="三段成績"><p class="tablet or large device only">&nbsp&nbsp&nbsp </p><kbd class="tablet or large device only"><p>系統預設占比為30%</p></kbd><p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
+						<label class="tablet or large device only">三段成績</label>
+						<label class="mobile only">三段成績，系統預設占比20%</label>
+						<input type="number" min="0" max="100" id="sc3" placeholder="三段成績"><p class="tablet or large device only">&nbsp&nbsp&nbsp </p><kbd class="tablet or large device only"><p>系統預設占比為20%</p></kbd><p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
 					</div>
 					<div class="required field">
-						<label>平時成績</label>
-						<input type="number" min="0" max="100" id="tc1" placeholder="平時成績(必填)"><p class="tablet or large device only">&nbsp&nbsp&nbsp </p><kbd class="tablet or large device only"><p>系統預設占比為30%</p></kbd><p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
+						<label class="tablet or large device only">平時成績</label>
+						<label class="mobile only">平時成績，系統預設占比40%</label>
+						<input type="number" min="0" max="100" id="tc1" placeholder="平時成績(必填)"><p class="tablet or large device only">&nbsp&nbsp&nbsp </p><kbd class="tablet or large device only"><p>系統預設占比為40%</p></kbd><p class="tablet or large device only">&nbsp&nbsp&nbsp</p>
 					</div>
 					<br>
 				</div>
@@ -144,26 +148,26 @@
 									if (data.rsc) { //如果後端回傳 json 資料有 nickname
 										// $("#demo")[0].reset(); //重設 ID 為 demo 的 form (表單)
 										if (data.sc3out) {
-											$("#result").html('<font color="#007500">你目前學期成績是「<font color="#0000ff">' + data.sc3out3 + '</font>」分</font><br><sk id="rs2"></sk><br><sk id="rs3"></sk>');
+											$("#result").html('<font color="#000000">你目前學期成績是「<font color="#0000ff">' + data.sc3out3 + '</font>」分</font><br><sk id="rs2"></sk><br><sk id="rs3"></sk>');
 											if (data.sc3out3 <60) {
-												$("#rs2").html('<font color="#007500">你三段至少要考「<font color="#0000ff">' + data.sc3out + '</font>」這一科才會趴斯</font>');
+												$("#rs2").html('<font color="#e31212">你三段至少要考「<font color="#0000ff">' + data.sc3out + '</font>」這一科才會趴斯</font>');
 											}else{
 												$("#rs2").html('<font color="#007500">基本上你三段不管怎麼考都不會有被當的問題安啦</font>');
 											}
 											if (data.sc3out2 >=0) {
-												$("#rs3").html('<font color="#007500">你三段至少要考「<font color="#0000ff">' + data.sc3out2 + '</font>」才能有補考資格</font>');
+												$("#rs3").html('<font color="#e31212">你三段至少要考「<font color="#0000ff">' + data.sc3out2 + '</font>」才能有補考資格</font>');
 											}
 										}
 										if (data.rc1) {
-											$("#result").html('<font color="#007500">你這學期成績「<font color="#0000ff">' + data.rc1 + '</font>」！<br>而且你的學期成績為「<font color="#0000ff">' + data.rc2 + '</font>」(四捨五入)，<sk id="result2"></sk>');
+											$("#result").html('<font color="#000000">你這學期成績「<font color="#0000ff">' + data.rc1 + '</font>」！<br>而且你的學期成績為「<font color="#0000ff">' + data.rc2 + '</font>」(四捨五入)，<sk id="result2"></sk>');
 											 if (data.rc2 >= 60) {
 												 $("#result2").html('恭喜🎉🎉');
 											 }else{
-												 $("#result2").html('幫你QQ<br><sk id="result3"></sk>');
+												 $("#result2").html('<font color="#e31212">加油好嗎？</font><br><sk id="result3"></sk>');
 												 if (data.rc2 >= 40) {
 													$("#result3").html('不過你學期成績有達補考標準(40)，<font color="#0000ff">記得要注意時間去補考！</font>');
 												}else{
-													$("#result3").html('你連補考門檻都不到欸，我也幫不了你了，<font color="#0000ff">乖乖重補修吧！</font>');
+													$("#result3").html('<font color="#e31212">你連補考門檻都不到欸，我也幫不了你了，</font><font color="#e31212">乖乖重補修吧！</font>');
 												}
 											 }
 										}
@@ -189,7 +193,7 @@
 	<br><br>
 	<footer>
 		<center>
-			<p>本系統由 <a target="_blank" href="https://me.imych.one/">黃猷珵</a> 及 <a target="_blank" href="https://dabo.xyz/">黃柏諭</a> 開發設計<br>
+			<p>本系統由 <a target="_blank" href="https://dabo.xyz/">黃柏諭</a> 及 <a target="_blank" href="https://me.imych.one/">黃猷珵</a> 開發設計<br>
 			</p>
 		</center>
 	</footer>
